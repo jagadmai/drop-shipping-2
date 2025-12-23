@@ -17,7 +17,7 @@ const PRODUCTS = [
     id: 3,
     title: "Dell XPS 13 Laptop",
     price: 999,
-    image: "https://www.amazon.ae/Dell-13-4-inch-Touch-Laptop/dp/B08ML2PW6W",
+    image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8",
     description: "Premium ultrabook with stunning display."
   },
   {
