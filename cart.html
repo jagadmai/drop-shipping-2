@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cart</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+  <a href="index.html">← Store</a>
+</header>
+
+<div id="cart" style="padding:20px"></div>
+
+<script src="products.js"></script>
+<script>
+  const cart = JSON.parse(localStorage.getItem("cart")) || {};
+  const container = document.getElementById("cart");
+
+  if (Object.keys(cart).length === 0) {
+    container.innerHTML = "<h2>Your cart is empty</h2>";
+  } else {
+    Object.keys(cart).forEach(id => {
+      const p = PRODUCTS.find(x => x.id == id);
+      const div = document.createElement("div");
+      div.className = "product";
+      div.innerHTML = `
+        <img src="${p.image}">
+        <h3>${p.title}</h3>
+        <div class="price">$${p.price}</div>
+        <p>Qty: ${cart[id]}</p>
+      `;
+      div.onclick = () => {
+        window.location.href = `product.html?id=${p.id}`;
+      };
+      container.appendChild(div);
+    });
+  }
+</script>
+
+</body>
+</html>

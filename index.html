@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Store</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+  MyStore
+  <a href="cart.html" style="float:right">🛒 Cart</a>
+</header>
+
+<div class="grid" id="products"></div>
+
+<script src="products.js"></script>
+<script>
+  const container = document.getElementById("products");
+
+  PRODUCTS.forEach(p => {
+    const div = document.createElement("div");
+    div.className = "product";
+    div.innerHTML = `
+      <img src="${p.image}">
+      <h3>${p.title}</h3>
+      <div class="price">$${p.price}</div>
+    `;
+    div.onclick = () => {
+      window.location.href = `product.html?id=${p.id}`;
+    };
+    container.appendChild(div);
+  });
+</script>
+
+</body>
+</html>

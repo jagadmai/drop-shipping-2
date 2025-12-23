@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Product</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+  <a href="index.html">← Back</a>
+  <a href="cart.html" style="float:right">🛒 Cart</a>
+</header>
+
+<div id="product" style="padding:20px; background:white; max-width:900px; margin:20px auto;"></div>
+
+<script src="products.js"></script>
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const id = Number(params.get("id"));
+  const product = PRODUCTS.find(p => p.id === id);
+
+  if (!product) {
+    document.getElementById("product").innerHTML = "<h2>Product not found</h2>";
+  } else {
+    document.getElementById("product").innerHTML = `
+      <img src="${product.image}" style="width:300px">
+      <h1>${product.title}</h1>
+      <div class="price">$${product.price}</div>
+      <p>${product.description}</p>
+      <button onclick="addToCart()">Add to Cart</button>
+    `;
+  }
+
+  function addToCart() {
+    let cart = JSON.parse(localStorage.getItem("cart")) || {};
+    cart[id] = (cart[id] || 0) + 1;
+    localStorage.setItem("cart", JSON.stringify(cart));
+    alert("Added to cart ✅");
+  }
+</script>
+
+</body>
+</html>
