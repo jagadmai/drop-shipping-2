@@ -25,40 +25,60 @@
   </header>
 
   <!-- PRODUCTS CONTAINER -->
-  <div id="products" class="grid"></div>
+  <div class="section">
+  <h2>🔥 Trending Today</h2>
+  <div id="trending" class="grid"></div>
+</div>
+
+<div class="section">
+  <h2>💻 Electronics</h2>
+  <div id="electronics" class="grid"></div>
+</div>
+
+<div class="section">
+  <h2>🎮 Gaming</h2>
+  <div id="gaming" class="grid"></div>
+</div>
+
+<div class="section">
+  <h2>🎧 Audio & Accessories</h2>
+  <div id="audio" class="grid"></div>
+</div>
+
 
   <!-- ✅ PASTE YOUR SCRIPT HERE -->
-  <script src="products.js"></script>
-  <script>
-    const container = document.getElementById("products");
+  
+ <script src="products.js"></script>
+<script>
+  const trending = document.getElementById("trending");
+  const electronics = document.getElementById("electronics");
+  const gaming = document.getElementById("gaming");
+  const audio = document.getElementById("audio");
 
-    function renderProducts(list) {
-      container.innerHTML = "";
-      list.forEach(p => {
-        const div = document.createElement("div");
-        div.className = "product";
-        div.innerHTML = `
-          <img src="${p.image}">
-          <h3>${p.title}</h3>
-          <div class="price">$${p.price}</div>
-        `;
-        div.onclick = () => {
-          location.href = `product.html?id=${p.id}`;
-        };
-        container.appendChild(div);
-      });
-    }
+  function render(list, container) {
+    container.innerHTML = "";
+    list.forEach(p => {
+      const div = document.createElement("div");
+      div.className = "product";
+      div.innerHTML = `
+        <img src="${p.image}">
+        <h3>${p.title}</h3>
+        <div class="price">$${p.price}</div>
+      `;
+      div.onclick = () => {
+        location.href = `product.html?id=${p.id}`;
+      };
+      container.appendChild(div);
+    });
+  }
 
-    function filterProducts() {
-      const value = document.getElementById("search").value.toLowerCase();
-      const filtered = PRODUCTS.filter(p =>
-        p.title.toLowerCase().includes(value)
-      );
-      renderProducts(filtered);
-    }
+  // SIMPLE CATEGORY LOGIC (CAN IMPROVE LATER)
+  render(PRODUCTS.slice(0, 4), trending);
+  render(PRODUCTS.filter(p => p.id <= 3), electronics);
+  render(PRODUCTS.filter(p => p.id === 4), gaming);
+  render(PRODUCTS.filter(p => p.id <= 2), audio);
+</script>
 
-    renderProducts(PRODUCTS);
-  </script>
 
 </body>
 </html>
