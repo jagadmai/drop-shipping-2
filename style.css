@@ -29,8 +29,13 @@ h1 {
   padding: 15px;
   border-radius: 8px;
   cursor: pointer;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
+
 
 .product:hover {
   transform: translateY(-4px);
