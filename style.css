@@ -21,7 +21,9 @@ h1 {
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 20px;
   padding: 20px;
+  align-items: stretch;
 }
+
 
 /* PRODUCT CARD */
 .product {
